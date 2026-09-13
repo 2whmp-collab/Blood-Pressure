@@ -11,6 +11,7 @@ format:
 #| echo: false
 #| message: false
 #| warning: false
+#| results: asis
 
 sheet_url <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFoq1LYMZBV8vbNbIa53B6O0DGwI3OjtvsgQER_kOgW4zyPhSkz3-EXi5mCclb8SNr9XPnGjV9c8O4/pub?gid=1315116594&single=true&output=csv"
 
@@ -51,7 +52,71 @@ pulse_average <- mean(
   na.rm = TRUE
 )
 
-systolic_average
-diastolic_average
-pulse_average
+lowest_systolic <- min(
+  as.numeric(last_7_days[["Systolic BP"]]),
+  na.rm = TRUE
+)
+
+highest_systolic <- max(
+  as.numeric(last_7_days[["Systolic BP"]]),
+  na.rm = TRUE
+)
+
+systolic_class <- if (systolic_average < 125) "good" else ""
+diastolic_class <- if (diastolic_average < 80) "good" else ""
+pulse_class <- if (pulse_average < 80) "good" else ""
+
+cat(
+  '<h2>7-Day Average</h2>',
+
+  '<div class="bp-container">',
+
+  '<div class="bp-card ', systolic_class, '">',
+  '<h3>Systolic</h3>',
+  '<span class="bp-number">',
+  sprintf("%.1f", systolic_average),
+  '</span>',
+  '<p>mmHg</p>',
+  '</div>',
+
+  '<div class="bp-card ', diastolic_class, '">',
+  '<h3>Diastolic</h3>',
+  '<span class="bp-number">',
+  sprintf("%.1f", diastolic_average),
+  '</span>',
+  '<p>mmHg</p>',
+  '</div>',
+
+  '<div class="bp-card ', pulse_class, '">',
+  '<h3>Pulse</h3>',
+  '<span class="bp-number">',
+  sprintf("%.1f", pulse_average),
+  '</span>',
+  '<p>bpm</p>',
+  '</div>',
+
+  '</div>',
+
+  '<h2>Systolic Range</h2>',
+
+  '<div class="bp-container">',
+
+  '<div class="bp-card">',
+  '<h3>Lowest</h3>',
+  '<span class="bp-number">',
+  sprintf("%.0f", lowest_systolic),
+  '</span>',
+  '<p>mmHg</p>',
+  '</div>',
+
+  '<div class="bp-card">',
+  '<h3>Highest</h3>',
+  '<span class="bp-number">',
+  sprintf("%.0f", highest_systolic),
+  '</span>',
+  '<p>mmHg</p>',
+  '</div>',
+
+  '</div>'
+)
 ```
