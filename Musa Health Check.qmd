@@ -1,0 +1,57 @@
+---
+title: "Blood Pressure"
+format:
+  html:
+    css: styles.css
+---
+
+## 7-Day Average
+
+```{r}
+#| echo: false
+#| message: false
+#| warning: false
+
+sheet_url <- "https://docs.google.com/spreadsheets/d/e/2PACX-1vTFoq1LYMZBV8vbNbIa53B6O0DGwI3OjtvsgQER_kOgW4zyPhSkz3-EXi5mCclb8SNr9XPnGjV9c8O4/pub?gid=1315116594&single=true&output=csv"
+
+data <- read.csv(
+  sheet_url,
+  check.names = FALSE,
+  stringsAsFactors = FALSE
+)
+
+data$Timestamp <- as.POSIXct(
+  data$Timestamp,
+  format = "%d/%m/%Y %H:%M:%S"
+)
+
+data$Date <- as.Date(data$Timestamp)
+
+latest_date <- max(data$Date, na.rm = TRUE)
+
+start_date <- latest_date - 6
+
+last_7_days <- data[
+  data$Date >= start_date &
+  data$Date <= latest_date,
+]
+
+systolic_average <- mean(
+  as.numeric(last_7_days[["Systolic BP"]]),
+  na.rm = TRUE
+)
+
+diastolic_average <- mean(
+  as.numeric(last_7_days[["Diastolic BP"]]),
+  na.rm = TRUE
+)
+
+pulse_average <- mean(
+  as.numeric(last_7_days[["Pulse"]]),
+  na.rm = TRUE
+)
+
+systolic_average
+diastolic_average
+pulse_average
+```

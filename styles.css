@@ -1,0 +1,28 @@
+.bp-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin: 40px 0;
+}
+
+.bp-card {
+  flex: 1;
+  text-align: center;
+  padding: 30px 20px;
+  border-radius: 16px;
+  background: #f5f5f5;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
+}
+
+.bp-card h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.bp-number {
+  display: block;
+  font-size: 3rem;
+  font-weight: 600;
+  margin: 15px 0 5px 0;
+}
