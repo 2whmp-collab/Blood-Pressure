@@ -31,7 +31,7 @@ jobs:
             any::rmarkdown
 
       - name: Render website
-        run: quarto render "Musa Health Check.qmd" --output-dir _site
+        run: quarto render "Musa Health Check.qmd" --output-dir _site --output index.html
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
