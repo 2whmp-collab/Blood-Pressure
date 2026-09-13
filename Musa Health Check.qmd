@@ -5,8 +5,6 @@ format:
     css: styles.css
 ---
 
-## 7-Day Average
-
 ```{r}
 #| echo: false
 #| message: false
