@@ -70,7 +70,7 @@ cat(
   '<div class="bp-container">',
 
   '<div class="bp-card ', systolic_class, '">',
-  '<h3>Systolic</h3>',
+  '<h3 class="no-link">Systolic</h3>',
   '<span class="bp-number">',
   sprintf("%.1f", systolic_average),
   '</span>',
@@ -78,7 +78,7 @@ cat(
   '</div>',
 
   '<div class="bp-card ', diastolic_class, '">',
-  '<h3>Diastolic</h3>',
+  '<h3 class="no-link">Diastolic</h3>',
   '<span class="bp-number">',
   sprintf("%.1f", diastolic_average),
   '</span>',
@@ -86,7 +86,7 @@ cat(
   '</div>',
 
   '<div class="bp-card ', pulse_class, '">',
-  '<h3>Pulse</h3>',
+  '<h3 class="no-link">Pulse</h3>',
   '<span class="bp-number">',
   sprintf("%.1f", pulse_average),
   '</span>',
